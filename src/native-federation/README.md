@@ -1,0 +1,9 @@
+# Native federation sample application
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
+
+## 1.- Create the angular workspace without any project
+
+```
+ng new native-federation --create-application false
+```

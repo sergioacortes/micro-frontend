@@ -40,3 +40,12 @@ export const routes: Routes = [{
     pathMatch: 'full'
 }];
 ```
+
+### 2.3- Clean the html code from the app.component.html file in the shell application
+
+In the shell application, clean the html code from the app.component.html file leaving the <span>router-outlet<span> tag.
+
+```
+<h1>Shell application</h1>
+<router-outlet />
+```

@@ -19,3 +19,9 @@ cd module-federation
 ```
 ng g application shell --routing true --style scss
 ```
+
+### 2.1- Add a home component to the shell project
+
+```
+ng g c home --project shell
+```

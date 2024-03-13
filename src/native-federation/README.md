@@ -49,3 +49,8 @@ In the shell application, clean the html code from the app.component.html file l
 <h1>Shell application</h1>
 <router-outlet />
 ```
+
+### 2.4- Serve the shell application to make sure it works fine
+
+```
+ng serve shell

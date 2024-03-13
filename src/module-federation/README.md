@@ -67,3 +67,17 @@ ng g application companies --routing true --style scss
 ```
 ng g c default --project companies
 ```
+
+### 3.2- Add an angular module to the companies project
+
+This is the module that is going to be expose through module federation
+
+```
+ng g m info --project companies --routing true
+```
+
+### 3.3- Add an angular component to the info module just created in the companies project
+
+```
+ng g c info --project companies
+```

@@ -137,3 +137,33 @@ In the shell application, clean the html code from the app.component.html file l
 ng add @angular-architects/module-federation --project companies --port 5001
 ```
 
+### 4.2- Update the webpack.config.js file created
+
+A webpack.config.js file has been created when module federation has been added to the application. By default the configuration does not expose any module. 
+Modify this file to expose the info module and add the rxjs library
+
+```
+        // For remotes (please adjust)
+        name: "companies",
+        filename: "remoteEntry.js",
+        exposes: {
+            './info': './projects/companies/src/app/info/info.module.ts',
+        },        
+        
+        shared: share({
+          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+
+          "rxjs": {
+            singleton: true,
+            strictVersion: true,
+            includeSecondaries: true,
+            requiredVersion: "auto"
+          },
+          
+          ...sharedMappings.getDescriptors()
+        })
+        ...
+```

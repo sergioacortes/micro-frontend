@@ -29,24 +29,25 @@ module.exports = {
         library: { type: "module" },
 
         // For remotes (please adjust)
-        // name: "companies",
-        // filename: "remoteEntry.js",
-        // exposes: {
-        //     './Component': './projects/companies/src/app/app.component.ts',
-        // },        
+        name: "companies",
+        filename: "remoteEntry.js",
+        exposes: {
+            './info': './projects/companies/src/app/info/info.module.ts',
+        },        
         
-        // For hosts (please adjust)
-        // remotes: {
-        //     "shell": "http://localhost:4200/remoteEntry.js",
-
-        // },
-
         shared: share({
           "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
           "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
           "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
 
+          "rxjs": {
+            singleton: true,
+            strictVersion: true,
+            includeSecondaries: true,
+            requiredVersion: "auto"
+          },
+          
           ...sharedMappings.getDescriptors()
         })
         

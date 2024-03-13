@@ -167,3 +167,11 @@ Modify this file to expose the info module and add the rxjs library
         })
         ...
 ```
+
+# 5.- Add module federation to the shell application
+
+## 5.1- Add @angular-architects/module-federation package to the companies project
+
+```
+ng add @angular-architects/module-federation --project shell --port 5000
+```

@@ -7,3 +7,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ```
 ng new native-federation --create-application false
 ```
+
+When the workspace is created remember to change to the workspace directory
+
+```
+cd native-federation
+```

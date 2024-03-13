@@ -25,3 +25,18 @@ ng g application shell --routing true --style scss
 ```
 ng g c home --project shell
 ```
+
+### 2.2- Update the routing of the shell project (app.routes.ts)
+
+Find the file app.routes.ts and update it to add the default route that target the home component created.
+
+```
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+
+export const routes: Routes = [{
+    path: '',
+    component: HomeComponent, 
+    pathMatch: 'full'
+}];
+```

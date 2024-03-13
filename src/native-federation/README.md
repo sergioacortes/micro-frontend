@@ -98,3 +98,24 @@ export const routes: Routes = [{
     loadChildren: () => import('./info/info.module').then((m) => m.InfoModule)
 }];
 ``` 
+
+### 3.5- Modify the routes of the info module in the companies aplication (info-routing.module.ts)
+
+For the default route, the module is going to load the info component.
+
+```
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { InfoComponent } from './info.component';
+
+const routes: Routes = [{
+  path: '',
+  component: InfoComponent
+}];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class InfoRoutingModule { }
+```

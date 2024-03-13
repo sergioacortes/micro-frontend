@@ -61,3 +61,9 @@ ng serve shell
 ```
 ng g application companies --routing true --style scss
 ```
+
+### 3.1- Add a default component to the companies project
+
+```
+ng g c default --project companies
+```

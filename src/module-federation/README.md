@@ -168,15 +168,15 @@ Modify this file to expose the info module and add the rxjs library
         ...
 ```
 
-# 5.- Add module federation to the shell application
+## 5.- Add module federation to the shell application
 
-## 5.1- Add @angular-architects/module-federation package to the companies project
+### 5.1- Add @angular-architects/module-federation package to the companies project
 
 ```
 ng add @angular-architects/module-federation --project shell --port 5000
 ```
 
-## 5.2- Update the webpack.config.js file created
+### 5.2- Update the webpack.config.js file created
 
 A webpack.config.js file has been created when module federation has been added to the application. By default the configuration does not consume the modules exposes for other microfrontend applications. 
 
@@ -203,4 +203,40 @@ Modify this file to consume the info module expose in the companies application.
 
           ...sharedMappings.getDescriptors()
         })
+```
+
+### 5.3- Add the microfrontend route to the shell application 
+
+Add the microfrontend route to load it into the shell application, modify the app.routes in the shell application.
+
+```
+
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+
+export const routes: Routes = [{
+    path: '',
+    component: HomeComponent, 
+    pathMatch: 'full'
+}, {
+    path: 'companies',
+    loadChildren: () => import('companies/info').then((m) => m.InfoModule)
+}];
+
+```
+
+### 5.4- Add the declarations to avoid compilation errors
+
+Because theres is no companies/info file in the shell application, you most define an declaration.d.ts file to define all the declarations to avoid compilation errors.
+
+Create the declarations.d.ts file and add the companies/info module declaration
+
+```
+declare module 'companies/info';
+```
+
+### 5.6- Serve the shell application to make sure everything is working
+
+```
+ng serve shell
 ```

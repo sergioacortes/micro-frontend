@@ -13,3 +13,9 @@ When the workspace is created remember to change to the workspace directory
 ```
 cd native-federation
 ```
+
+## 2.- Create the shell angular application 
+
+```
+ng g application shell --routing true --style scss
+```

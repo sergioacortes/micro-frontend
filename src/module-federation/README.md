@@ -55,3 +55,9 @@ In the shell application, clean the html code from the app.component.html file l
 ```
 ng serve shell
 ```
+
+## 3.- Create the companies angular application
+
+```
+ng g application companies --routing true --style scss
+```

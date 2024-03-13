@@ -81,3 +81,42 @@ ng g m info --project companies --routing true
 ```
 ng g c info --project companies
 ```
+
+### 3.4- Modify the routes of the companies application (app.routes.ts)
+
+For the default route, the application is going to load the default component, and for the info route the module is going to load the info module and its default route
+
+```
+import { Routes } from '@angular/router';
+import { DefaultComponent } from './default/default.component';
+
+export const routes: Routes = [{
+    path: '',
+    component: DefaultComponent
+}, {
+    path: 'info',
+    loadChildren: () => import('./info/info.module').then((m) => m.InfoModule)
+}];
+``` 
+
+### 3.5- Modify the routes of the info module in the companies aplication (info-routing.module.ts)
+
+For the default route, the module is going to load the info component.
+
+```
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { InfoComponent } from './info.component';
+
+const routes: Routes = [{
+  path: '',
+  component: InfoComponent
+}];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class InfoRoutingModule { }
+```
+

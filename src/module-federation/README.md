@@ -120,3 +120,11 @@ const routes: Routes = [{
 export class InfoRoutingModule { }
 ```
 
+### 3.6- Clean the html code from the app.component.html file in the companies project
+
+In the shell application, clean the html code from the app.component.html file leaving the <span>router-outlet<span> tag.
+
+```
+<h1>Companies application</h1>
+<router-outlet />
+```

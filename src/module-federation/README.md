@@ -175,3 +175,32 @@ Modify this file to expose the info module and add the rxjs library
 ```
 ng add @angular-architects/module-federation --project shell --port 5000
 ```
+
+## 5.2- Update the webpack.config.js file created
+
+A webpack.config.js file has been created when module federation has been added to the application. By default the configuration does not consume the modules exposes for other microfrontend applications. 
+
+Modify this file to consume the info module expose in the companies application.
+
+```
+        // For hosts (please adjust)
+        remotes: {
+          "companies": "http://localhost:5001/remoteEntry.js",
+        },
+
+        shared: share({
+          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+
+          "rxjs": {
+            singleton: true,
+            strictVersion: true,
+            includeSecondaries: true,
+            requiredVersion: "auto"
+          },
+
+          ...sharedMappings.getDescriptors()
+        })
+```

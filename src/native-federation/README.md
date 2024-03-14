@@ -128,3 +128,13 @@ In the shell application, clean the html code from the app.component.html file l
 <h1>Companies application</h1>
 <router-outlet />
 ```
+
+## 4.- Add native federation to the companies application
+
+### 4.1- Add @angular-architects/native-federation package to the companies project
+
+```
+ng add @angular-architects/native-federation --project companies --port 5001 type=remote
+```
+
+

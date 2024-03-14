@@ -137,4 +137,28 @@ In the shell application, clean the html code from the app.component.html file l
 ng add @angular-architects/native-federation --project companies --port 5001 type=remote
 ```
 
+### 4.2- Update the federation.config.js file to expose the companies info component
+
+A federation.config.js file has been created when nativie federation has been added to the application. By default the app.component.ts is exposed but you can modify it to expose the module or components you need. 
+Modify this file to expose the companies info component.
+
+```
+  name: 'companies',
+
+  exposes: {
+    './companies-info': './projects/companies/src/app/inf/info.component.ts',
+  },
+
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
+  skip: [
+    'rxjs/ajax',
+    'rxjs/fetch',
+    'rxjs/testing',
+    'rxjs/webSocket',
+    // Add further packages you don't need at runtime
+  ]
+```
 

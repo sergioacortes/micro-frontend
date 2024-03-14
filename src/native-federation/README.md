@@ -162,3 +162,13 @@ Modify this file to expose the companies info component.
   ]
 ```
 
+## 5.- Add nativie federation to the shell application
+
+### 5.1- Add @angular-architects/nativie-federation package to the companies project
+
+```
+ng add @angular-architects/nativie-federation --project shell --port 5000 --type dynamic-host
+```
+
+<b>IMPORTANT:</b> A federation.config.js file is created just like the one created when we add native-federation to the companies application. The different is that the shell is the host, and the host by default does not expose any component or module. But, it doesn't mean that a host can't not share any module or module, it just mean is not used to.
+

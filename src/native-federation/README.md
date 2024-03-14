@@ -128,3 +128,91 @@ In the shell application, clean the html code from the app.component.html file l
 <h1>Companies application</h1>
 <router-outlet />
 ```
+
+## 4.- Add native federation to the companies application
+
+### 4.1- Add @angular-architects/native-federation package to the companies project
+
+```
+ng add @angular-architects/native-federation --project companies --port 5001 type=remote
+```
+
+### 4.2- Update the federation.config.js file to expose the companies info component
+
+A federation.config.js file has been created when nativie federation has been added to the application. By default the app.component.ts is exposed but you can modify it to expose the module or components you need. 
+Modify this file to expose the companies info component.
+
+```
+  name: 'companies',
+
+  exposes: {
+    './companies-info': './projects/companies/src/app/info/info.component.ts',
+  },
+
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
+  skip: [
+    'rxjs/ajax',
+    'rxjs/fetch',
+    'rxjs/testing',
+    'rxjs/webSocket',
+    // Add further packages you don't need at runtime
+  ]
+```
+
+## 5.- Add nativie federation to the shell application
+
+### 5.1- Add @angular-architects/nativie-federation package to the companies project
+
+```
+ng add @angular-architects/nativie-federation --project shell --port 5000 --type dynamic-host
+```
+
+<b>IMPORTANT:</b> A federation.config.js file is created just like the one created when we add native-federation to the companies application. The different is that the shell is the host, and the host by default does not expose any component or module. But, it doesn't mean that a host can't not share any module or module, it just mean is not used to.
+
+
+### 5.2- Update the federation.manifest.json file
+
+A federation.manifest.json file has been created in the assets folder of the shell application when nativie federation has been added to the application. 
+
+Modify this file to consume the companies info expose in the companies application micro-services.
+
+```
+{
+	"companies": "http://localhost:5001/remoteEntry.json"
+}
+```
+
+### 5.3- Add the microfrontend route to the shell application 
+
+Add the microfrontend route to load it into the shell application, modify the app.routes in the shell application.
+
+```
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { loadRemoteModule } from '@angular-architects/native-federation';
+
+export const routes: Routes = [{
+    path: '',
+    component: HomeComponent, 
+    pathMatch: 'full'
+}, {
+    path: 'companies',
+    loadComponent: () => loadRemoteModule('companies', './companies-info').then((m) => m.InfoComponent)
+}];
+
+```
+
+Modify the info.component.html from the companies micro-frontend 
+
+```
+<h2>This is the company information from the companies micro-frontend</h2>
+```
+
+### 5.4- Serve the shell application to make sure everything is working
+
+```
+ng serve shell
+```

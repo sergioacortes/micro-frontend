@@ -172,3 +172,15 @@ ng add @angular-architects/nativie-federation --project shell --port 5000 --type
 
 <b>IMPORTANT:</b> A federation.config.js file is created just like the one created when we add native-federation to the companies application. The different is that the shell is the host, and the host by default does not expose any component or module. But, it doesn't mean that a host can't not share any module or module, it just mean is not used to.
 
+
+### 5.2- Update the federation.manifest.json file
+
+A federation.manifest.json file has been created in the assets folder of the shell application when nativie federation has been added to the application. 
+
+Modify this file to consume the companies info expose in the companies application micro-services.
+
+```
+{
+	"companies": "http://localhost:5001/remoteEntry.json"
+}
+```

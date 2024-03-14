@@ -184,3 +184,35 @@ Modify this file to consume the companies info expose in the companies applicati
 	"companies": "http://localhost:5001/remoteEntry.json"
 }
 ```
+
+### 5.3- Add the microfrontend route to the shell application 
+
+Add the microfrontend route to load it into the shell application, modify the app.routes in the shell application.
+
+```
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { loadRemoteModule } from '@angular-architects/native-federation';
+
+export const routes: Routes = [{
+    path: '',
+    component: HomeComponent, 
+    pathMatch: 'full'
+}, {
+    path: 'companies',
+    loadComponent: () => loadRemoteModule('companies', './companies-info').then((m) => m.InfoComponent)
+}];
+
+```
+
+Modify the info.component.html from the companies micro-frontend 
+
+```
+<h2>This is the company information from the companies micro-frontend</h2>
+```
+
+### 5.4- Serve the shell application to make sure everything is working
+
+```
+ng serve shell
+```

@@ -146,7 +146,7 @@ Modify this file to expose the companies info component.
   name: 'companies',
 
   exposes: {
-    './companies-info': './projects/companies/src/app/inf/info.component.ts',
+    './companies-info': './projects/companies/src/app/info/info.component.ts',
   },
 
   shared: {
